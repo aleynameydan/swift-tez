@@ -1,25 +1,27 @@
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
 //
-//  Trivia.swift
-//  FinalProjectVs1
-//
-//  Created by Aleyna Dila Meydan on 10.04.2023.
+
 //
 
 import Foundation
 
-struct Trivia: Decodable{
-    var results: [Result]
-    
-    struct Result: Decodable,Identifiable{
-        var id: UUID
-        var category: String
-        var type: String
-        var difficulty: String
-        var question: String
-        var correctAnswer: String
-        var incorrectAnswer: [String]
-        
 
-        }
+
+// MARK: - QuestionElement
+class QuestionElement:Codable{
+    let question, type: String
+    let answers: [String]
+
+    init(question: String, type: String, answers: [String]) {
+        self.question = question
+        self.type = type
+        self.answers = answers
     }
+}
+
+typealias Question = [QuestionElement]
+
+
+
 

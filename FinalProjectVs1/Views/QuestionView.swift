@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+import Foundation
 struct QuestionView: View {
+    
     var body: some View {
         VStack(spacing: 40){
             HStack{
@@ -25,7 +27,7 @@ struct QuestionView: View {
                     .font(.system(size: 20))
                     .bold()
                     .foregroundColor(.brown)
-                
+              
                 AnswerRow(answer: Answer(text: "Kadın", isCorrect: true))
                 
                 AnswerRow(answer: Answer(text: "Erkek", isCorrect: true))
@@ -43,8 +45,36 @@ struct QuestionView: View {
         .navigationBarHidden(true)
     }
 }
+let jsonData = Data( """
+ [{
+     "question":"string",
+     "type":"string",
+     "answers":["Ford",
+     "BMW",
+     "Fiat"]
 
-struct QuestionView_Previews: PreviewProvider {
+
+ },{
+     "question":"string",
+     "type":"string",
+     "answers":["Ford",
+     "BMW",
+     "Fiat"]
+
+
+ },{
+     "question":"string",
+     "type":"string",
+     "answers":["Ford",
+     "BMW",
+     "Fiat"]
+
+ }]
+ """.utf8)
+
+ let questions = try? JSONDecoder().decode(Question.self, from: jsonData)
+
+ struct QuestionView_Previews: PreviewProvider {
     static var previews: some View {
         QuestionView()
     }
